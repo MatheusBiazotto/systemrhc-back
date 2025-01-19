@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@prisma/client": "^6.2.1",
+    "axios": "^1.7.9",
     "bcrypt": "^5.1.1",
     "express": "^4.21.2",
     "jose": "^5.9.6",
