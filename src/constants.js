@@ -1,0 +1,21 @@
+const HTTP_STATUS = {
+  OK: 200,
+  CREATED: 201,
+  NO_CONTENT: 204,
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
+  NOT_FOUND: 404,
+  INTERNAL_SERVER_ERROR: 500,
+};
+
+const ABORT_STATUS = -1;
+const SALT_ROUNDS = 12;
+const AUTH_SECRET = new TextEncoder().encode(process.env.SECRET_KEY);
+
+module.exports = {
+  ABORT_STATUS,
+  AUTH_SECRET,
+  SALT_ROUNDS,
+  HTTP_STATUS,
+};

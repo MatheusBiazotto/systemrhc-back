@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id               Int                @id @default(autoincrement())
+  nickname         String?            @db.Text
+  password         String?            @db.Text
+  email            String?            @db.Text
+  user_permissions user_permissions[]
+}
+
+model departments {
+  id          Int           @id @default(autoincrement())
+  name        String?       @db.Text
+  link        String?       @db.Text
+  createdAt   DateTime?     @db.DateTime(0)
+  icon        String?       @db.Text
+  permissions permissions[]
+}
+
+model permissions {
+  id               Int                @id @default(autoincrement())
+  name             String?            @db.Text
+  idDepart         Int?
+  departments      departments?       @relation(fields: [idDepart], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "permissions_ibfk_1")
+  user_permissions user_permissions[]
+
+  @@index([idDepart], map: "idDepart")
+}
+
+model user_permissions {
+  id           Int          @id @default(autoincrement())
+  userId       Int?
+  permissionId Int?
+  users        users?       @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_permissions_ibfk_1")
+  permissions  permissions? @relation(fields: [permissionId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_permissions_ibfk_2")
+
+  @@index([permissionId], map: "permissionId")
+  @@index([userId], map: "userId")
+}
