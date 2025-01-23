@@ -14,6 +14,7 @@ model users {
   email             String?             @db.Text
   points            Int?
   positionId        Int?
+  active            Boolean?
   user_permissions  user_permissions[]
   positions         positions?          @relation(fields: [positionId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "users_ibfk_1")
   weekly_highlights weekly_highlights[]
@@ -63,7 +64,8 @@ model weekly_highlights {
 }
 
 model positions {
-  id    Int     @id @default(autoincrement())
-  name  String? @db.Text
-  users users[]
+  id     Int     @id @default(autoincrement())
+  name   String? @db.Text
+  weight Int?
+  users  users[]
 }

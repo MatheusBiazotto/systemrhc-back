@@ -39,6 +39,14 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Senha inválida" });
     }
 
+    if (!user.active) {
+      return res.status(401).json({
+        message:
+          "Esse usuário está desativado. Entre em contato com a fundação.",
+        active: false,
+      });
+    }
+
     const token = await new jose.SignJWT({
       _id: user.id,
       email: user.email,
