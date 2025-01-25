@@ -3,7 +3,4 @@
   "buildCommand": "npm run migrate",
   "builds": [{ "src": "*.js", "use": "@vercel/node" }],
   "routes": [{ "src": "/(.*)", "dest": "/" }],
-  "cache": {
-    "includes": ["node_modules/@prisma/client", "prisma/schema.prisma"]
-  }
 }
