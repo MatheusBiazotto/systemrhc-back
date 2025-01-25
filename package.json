@@ -1,11 +1,12 @@
 {
   "scripts": {
-    "start": "node index.js",
-    "pull": "npx prisma db pull",
+    "start": "node --watch index.js",
+    "pull": "npx prisma db pull && npx prisma generate",
     "migrate": "npx prisma db push && npx prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^6.2.1",
+    "axios": "^1.7.9",
     "bcrypt": "^5.1.1",
     "express": "^4.21.2",
     "jose": "^5.9.6",
