@@ -2,7 +2,7 @@
   "scripts": {
     "start": "node --watch index.js",
     "pull": "npx prisma db pull && npx prisma generate",
-    "migrate": "npx prisma db push && npx prisma generate"
+    "migrate": "npx prisma db pull && npx prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^6.2.1",
