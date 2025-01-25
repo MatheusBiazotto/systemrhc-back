@@ -88,6 +88,16 @@ router.post("/hire", async (req, res) => {
       });
     }
 
+    await prisma.logs.create({
+      data: {
+        createdAt: new Date(),
+        createdBy: userId,
+        nickname: user.nickname,
+        type: "PROMOÇÃO/CONTRATAÇÃO",
+        positionId: position.id,
+      }
+    })
+
     await prisma.users.update({
       where: {
         id: user.id,
